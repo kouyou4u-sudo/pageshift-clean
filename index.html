@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pageshift | 本を通じて学びを広げる</title>
+    <meta
+      name="description"
+      content="本を通じて学びを広げる読書ポートフォリオサイト。Open Library の実データと横スライド演出で、学ぶための本・働くための本・物語を味わう本との出会いを届けます。"
+    />
+    <link rel="preconnect" href="https://covers.openlibrary.org" />
+    <link rel="preconnect" href="https://openlibrary.org" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-progress" aria-hidden="true">
+      <span id="pageProgress"></span>
+    </div>
+    <div class="ambient-noise" aria-hidden="true"></div>
+    <div class="reading-rail" aria-label="セクションナビゲーション">
+      <button class="rail-dot active" data-target="hero" aria-label="ヒーローへ移動">01</button>
+      <button class="rail-dot" data-target="panel-business" aria-label="ビジネス書へ移動">02</button>
+      <button class="rail-dot" data-target="panel-study" aria-label="学習参考書へ移動">03</button>
+      <button class="rail-dot" data-target="panel-mystery" aria-label="ミステリー小説へ移動">04</button>
+      <button class="rail-dot" data-target="panel-discovery" aria-label="注目書籍へ移動">05</button>
+      <button class="rail-dot" data-target="insight-select" aria-label="良い本の選び方へ移動">06</button>
+      <button class="rail-dot" data-target="insight-learning" aria-label="読書を学びに変える方法へ移動">07</button>
+      <button class="rail-dot" data-target="insight-genres" aria-label="ジャンル別の読み分けへ移動">08</button>
+    </div>
+
+    <header class="hero section-shell" id="hero" data-section="hero">
+      <div class="section-inner hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Reading Portfolio / Curated Learning</p>
+          <h1>
+            本は知識の倉庫ではなく、
+            <span>思考を広げる入口になる。</span>
+          </h1>
+          <p class="hero-lead">
+            学ぶための本、働くための本、物語を味わう本にはそれぞれ役割があります。良い本に出会うことは、良い問いに出会うことでもある。Pageshift
+            は、その入口を静かに、しかし印象深く案内する読書サイトです。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#panel-business">本を探す</a>
+            <a class="button button-secondary" href="#discover">注目カテゴリを見る</a>
+          </div>
+          <dl class="hero-metrics" aria-label="サイトの特徴">
+            <div class="metric-card">
+              <dt>4 Themes</dt>
+              <dd>働く・学ぶ・味わう・見つける</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Open Library</dt>
+              <dd>実データを丁寧に整形して表示</dd>
+            </div>
+            <div class="metric-card">
+              <dt>Portfolio Ready</dt>
+              <dd>ローディング、エラー、代替表示まで実装</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-visual glass-panel">
+          <div class="visual-head">
+            <p>今読まれている視点</p>
+            <span>Night Library Feed</span>
+          </div>
+          <div class="reading-stack" aria-label="注目トピック">
+            <article class="mini-feature">
+              <span class="mini-feature__label">注目ワード</span>
+              <strong>自己投資 / マネジメント / 思考法</strong>
+              <p>働く視野を広げる本は、答えよりも判断軸を増やしてくれます。</p>
+            </article>
+            <article class="mini-feature">
+              <span class="mini-feature__label">学び直し</span>
+              <strong>反復できる参考書を選ぶ</strong>
+              <p>いきなり難解な本へ飛ばず、いまの理解に接続できる一冊から始める。</p>
+            </article>
+            <article class="mini-feature">
+              <span class="mini-feature__label">物語の効用</span>
+              <strong>感情と文脈を読む力を育てる</strong>
+              <p>小説は論理の外にある余白を増やし、問いの深さを支えます。</p>
+            </article>
+          </div>
+          <div class="tag-cloud" aria-label="カテゴリタグ">
+            <span>ビジネス書</span>
+            <span>学習参考書</span>
+            <span>ミステリー</span>
+            <span>学び直し</span>
+            <span>読書メモ</span>
+            <span>思考整理</span>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#discover" aria-label="次のセクションへスクロール">
+        <span></span>
+        <small>Scroll to Discover</small>
+      </a>
+    </header>
+
+    <main>
+      <section
+        class="horizontal-stage"
+        id="discover"
+        aria-label="注目カテゴリを横スクロールで閲覧"
+      >
+        <div class="horizontal-sticky">
+          <div class="horizontal-overlay">
+            <div>
+              <p class="eyebrow eyebrow--subtle">Featured Shelves</p>
+              <h2>学びを広げる4つの棚</h2>
+            </div>
+            <div class="horizontal-progress-box" aria-label="横スライドの進行状況">
+              <span id="horizontalProgressText">1 / 4</span>
+              <div class="horizontal-progress-bar">
+                <span id="horizontalProgressBar"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="horizontal-track" id="horizontalTrack">
+            <article
+              class="category-panel"
+              id="panel-business"
+              data-section="panel-business"
+              data-category="business"
+            >
+              <div class="panel-copy">
+                <p class="panel-kicker">01 / ビジネス書</p>
+                <h2>働く解像度を上げるための本</h2>
+                <p class="panel-description">
+                  ビジネス書は即効性だけでなく、意思決定の前提を整えるためにも役立ちます。短期の成果より、
+                  判断の質を育てる一冊に出会うための棚です。
+                </p>
+                <div class="panel-traits">
+                  <div class="trait-card">
+                    <strong>視点</strong>
+                    <span>組織・戦略・リーダーシップの視野を広げる</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>使い方</strong>
+                    <span>現場の課題に置き換えて読むと定着しやすい</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>向いている人</strong>
+                    <span>判断軸を増やしたい社会人や学び直し世代</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-books">
+                <div class="books-head">
+                  <p>Open Library から取得</p>
+                  <span>Business / Management / Leadership</span>
+                </div>
+                <div class="books-grid" data-books-grid="business" aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article
+              class="category-panel"
+              id="panel-study"
+              data-section="panel-study"
+              data-category="study"
+            >
+              <div class="panel-copy">
+                <p class="panel-kicker">02 / 学習参考書</p>
+                <h2>理解と反復を支える、学び直しの土台</h2>
+                <p class="panel-description">
+                  参考書は背伸びより接続が大切です。いまの自分の理解に合う一冊を選び、繰り返し使える構造を持つ本を見つけるためのカテゴリです。
+                </p>
+                <div class="panel-traits">
+                  <div class="trait-card">
+                    <strong>視点</strong>
+                    <span>概念を分解し、順序立てて理解を積み上げる</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>使い方</strong>
+                    <span>章ごとに要点を言語化して、反復の回数を増やす</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>向いている人</strong>
+                    <span>基礎から学び直したい人、独学を継続したい人</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-books">
+                <div class="books-head">
+                  <p>Open Library から取得</p>
+                  <span>Study guide / Textbook / Learning</span>
+                </div>
+                <div class="books-grid" data-books-grid="study" aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article
+              class="category-panel"
+              id="panel-mystery"
+              data-section="panel-mystery"
+              data-category="mystery"
+            >
+              <div class="panel-copy">
+                <p class="panel-kicker">03 / ミステリー小説</p>
+                <h2>論理だけでは届かない読解力を育てる</h2>
+                <p class="panel-description">
+                  ミステリーは伏線、感情、文脈を追うことで思考の幅を広げます。学習や仕事の外側にある、読む力そのものを鍛えるための棚です。
+                </p>
+                <div class="panel-traits">
+                  <div class="trait-card">
+                    <strong>視点</strong>
+                    <span>情報の置かれ方と読み手の推理を往復できる</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>使い方</strong>
+                    <span>違和感をメモしながら読むと観察力が育つ</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>向いている人</strong>
+                    <span>物語を味わいながら思考の柔らかさも保ちたい人</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-books">
+                <div class="books-head">
+                  <p>Open Library から取得</p>
+                  <span>Mystery / Detective fiction</span>
+                </div>
+                <div class="books-grid" data-books-grid="mystery" aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article
+              class="category-panel"
+              id="panel-discovery"
+              data-section="panel-discovery"
+              data-category="discovery"
+            >
+              <div class="panel-copy">
+                <p class="panel-kicker">04 / 新着ベースの注目書籍</p>
+                <h2>売上ランキングではなく、いま見つけたい本</h2>
+                <p class="panel-description">
+                  この棚は Open Library 検索の新着系結果をもとにした注目書籍です。実在の売上順位を示すものではなく、新しく出会うための入口として構成しています。
+                </p>
+                <div class="panel-traits">
+                  <div class="trait-card">
+                    <strong>視点</strong>
+                    <span>新着ベースで知的関心を刺激する候補を拾う</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>使い方</strong>
+                    <span>気になるテーマを見つけたら Open Library で深掘り</span>
+                  </div>
+                  <div class="trait-card">
+                    <strong>注意</strong>
+                    <span>売上ランキングではなく検索ベースの発見導線</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-books">
+                <div class="books-head">
+                  <p>Open Library から取得</p>
+                  <span>Innovation / New / Discovery</span>
+                </div>
+                <div class="books-grid" data-books-grid="discovery" aria-live="polite"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="insight-section section-shell" id="insight-select" data-section="insight-select">
+        <div class="section-inner insight-layout insight-layout--split">
+          <div class="insight-copy">
+            <p class="eyebrow">01 / 良い本の選び方</p>
+            <h2>いまの自分に必要な本から、読書は深くなる。</h2>
+            <p>
+              良い本とは、有名な本であることよりも、いまの自分に接続できる本であることが大切です。目的が曖昧なまま難しい本へ進むと、読了より先に集中力が切れてしまいます。
+            </p>
+            <p>
+              仕事の悩みなら判断軸を増やす本を、学び直しなら反復しやすい本を、感性を広げたいなら物語を。読む理由を先に言葉にすると、本選びはぐっと安定します。
+            </p>
+          </div>
+          <div class="selection-cards glass-panel">
+            <article>
+              <span>目的</span>
+              <strong>何のために読むかを先に決める</strong>
+              <p>成果、理解、視野拡張のどれを求めるかで、選ぶ棚は変わります。</p>
+            </article>
+            <article>
+              <span>難易度</span>
+              <strong>少し背伸び程度に留める</strong>
+              <p>難しすぎる本は挫折の原因になります。次に進みたくなる手応えを優先します。</p>
+            </article>
+            <article>
+              <span>再読性</span>
+              <strong>繰り返し戻れる本を選ぶ</strong>
+              <p>線を引きたくなる、見返したくなる一冊は、長く自分の資産になります。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="insight-section section-shell insight-section--accent"
+        id="insight-learning"
+        data-section="insight-learning"
+      >
+        <div class="section-inner insight-layout insight-layout--timeline">
+          <div class="quote-block glass-panel">
+            <p class="quote-mark">“</p>
+            <blockquote>
+              読書は、読んで終えるものではなく、考えを動かし、行動に変えるところから価値が出ます。
+            </blockquote>
+          </div>
+          <div class="timeline-panel">
+            <p class="eyebrow">02 / 読書を学びに変える方法</p>
+            <h2>読んだ内容を、自分の言葉と行動へ移す。</h2>
+            <div class="timeline-steps">
+              <article class="timeline-step">
+                <span>01</span>
+                <div>
+                  <strong>メモを取る</strong>
+                  <p>気になった一節ではなく、なぜ気になったのかまで残すと理解が深まります。</p>
+                </div>
+              </article>
+              <article class="timeline-step">
+                <span>02</span>
+                <div>
+                  <strong>誰かに説明できる形にする</strong>
+                  <p>一冊を三行で話せるようにすると、要点と論点の区別がつきやすくなります。</p>
+                </div>
+              </article>
+              <article class="timeline-step">
+                <span>03</span>
+                <div>
+                  <strong>実際の行動に落とし込む</strong>
+                  <p>一つだけ試す行動を決めると、読書が知識の蓄積から変化の起点へ変わります。</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="insight-section section-shell" id="insight-genres" data-section="insight-genres">
+        <div class="section-inner insight-layout insight-layout--grid">
+          <div class="genres-copy">
+            <p class="eyebrow">03 / ジャンル別の読み分け</p>
+            <h2>同じ「読む」でも、得られるものは違う。</h2>
+            <p>
+              ビジネス書は行動のヒントを、参考書は理解と反復の足場を、小説は思考・感情・文脈理解の広がりを与えてくれます。ジャンルごとの役割を知ると、本棚の使い方が立体的になります。
+            </p>
+          </div>
+          <div class="genre-cards">
+            <article class="genre-card">
+              <span>Business</span>
+              <strong>行動のヒントを得る</strong>
+              <p>現場に持ち込める視点を増やし、判断の質を少しずつ底上げする。</p>
+            </article>
+            <article class="genre-card">
+              <span>Study</span>
+              <strong>理解と反復を支える</strong>
+              <p>順序立てて学び、基礎を固めることで、独学の継続性が上がる。</p>
+            </article>
+            <article class="genre-card">
+              <span>Novel</span>
+              <strong>思考と感情の幅を広げる</strong>
+              <p>正解のない文脈を読む力が増え、他者理解や観察にも厚みが出る。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="updates-section section-shell" id="updates">
+        <div class="section-inner">
+          <div class="updates-shell glass-panel">
+            <div class="updates-header">
+              <div class="updates-copy">
+                <p class="eyebrow eyebrow--subtle">Newsroom / Journal</p>
+                <h2>お知らせとブログ</h2>
+                <p class="updates-lead">
+                  最新のお知らせと学びの記録を、あとから WordPress の記事一覧へ差し替えやすい形で整理しています。
+                </p>
+              </div>
+
+              <div class="updates-tabs" role="tablist" aria-label="お知らせとブログの切り替え">
+                <button
+                  class="updates-tab is-active"
+                  id="tab-news"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-news"
+                  data-post-tab="news"
+                  tabindex="0"
+                >
+                  お知らせ
+                </button>
+                <button
+                  class="updates-tab"
+                  id="tab-blog"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-blog"
+                  data-post-tab="blog"
+                  tabindex="-1"
+                >
+                  ブログ
+                </button>
+              </div>
+            </div>
+
+            <div class="updates-panels">
+              <div
+                class="updates-panel is-active"
+                id="panel-news"
+                role="tabpanel"
+                aria-labelledby="tab-news"
+              >
+                <div id="newsList" class="post-list" aria-live="polite"></div>
+              </div>
+
+              <div
+                class="updates-panel"
+                id="panel-blog"
+                role="tabpanel"
+                aria-labelledby="tab-blog"
+                hidden
+              >
+                <div id="blogList" class="post-list" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <div class="updates-links" aria-label="一覧ページへのリンク">
+              <a class="updates-link is-active" href="#" data-post-link="news">お知らせ一覧へ</a>
+              <a class="updates-link" href="#" data-post-link="blog">ブログ一覧へ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-inner footer-layout">
+        <div>
+          <p class="eyebrow eyebrow--subtle">Pageshift</p>
+          <p>
+            本を通じて学びを広げるための、静かな読書ポートフォリオ。
+          </p>
+        </div>
+        <a class="footer-link" href="#hero">ページ上部へ戻る</a>
+      </div>
+    </footer>
+
+    <template id="bookCardTemplate">
+      <article class="book-card">
+        <a class="book-card__link" target="_blank" rel="noreferrer noopener">
+          <div class="book-cover-wrap">
+            <img class="book-cover" loading="lazy" alt="" />
+            <div class="book-cover-fallback" aria-hidden="true">
+              <span>NO COVER</span>
+            </div>
+          </div>
+          <div class="book-meta">
+            <h3 class="book-title"></h3>
+            <p class="book-author"></p>
+            <div class="book-foot">
+              <span class="book-year"></span>
+              <span class="book-external">Open Library</span>
+            </div>
+          </div>
+        </a>
+      </article>
+    </template>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
